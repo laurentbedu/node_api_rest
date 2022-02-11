@@ -6,4 +6,4 @@
 
 # PUT http://localhost:5001/contact/1
 
-DELETE http://localhost:5001/contact/1
+# DELETE http://localhost:5001/category/1

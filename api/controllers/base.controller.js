@@ -1,3 +1,5 @@
+const BaseService = require('../services/base.service')
+
 class BaseController {
     
   constructor() {
@@ -5,8 +7,10 @@ class BaseController {
     this.table = this.name.toLowerCase();
   }
 
-  getAll = () => {
-    return `get all ${this.table} rows`;
+  getAll = async () => {
+    const sql = `SELECT * FROM ${this.table}`;
+    const result = await BaseService.executeQuery(sql);
+    return result;
   };
 
   getOne = (id) => {

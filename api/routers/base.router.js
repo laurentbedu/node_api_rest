@@ -15,7 +15,7 @@ class BaseRouter {
   initializeRoutes = () => {
     //get all db contact table rows
     this.router.get("/", async (req, res) => {
-        const response = this.controller.getAll();
+        const response = await this.controller.getAll();
         res.send(response);
     });
     //get one db contact table row

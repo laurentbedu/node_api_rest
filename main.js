@@ -2,6 +2,8 @@ const express = require("express");
 
 const app = express();
 
+app.use(express.json());
+
 const routers = require('./api/routers');
 for(const route in routers){
     app.use(`/${route}`, new routers[route]().router);

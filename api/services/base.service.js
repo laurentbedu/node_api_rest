@@ -3,6 +3,12 @@ const mysql = require('mysql');
 
 class BaseService{
 
+    constructor() {
+        this.name = this.constructor.name.replace(`Service`, ``);
+        this.table = this.name.toLowerCase();
+      }
+
+
     static connection;
     static connect = () => {
         if(!BaseService.connection){
@@ -28,6 +34,24 @@ class BaseService{
                 });
             });  
         return result;
+    }
+
+    selectAll = async () => {
+        const sql = `SELECT * FROM ${this.table} WHERE deleted = 0`;
+        const rows = await BaseService.executeQuery(sql);
+        return rows;
+    }
+
+    selectOne = async (id) => {
+        const sql = `SELECT * FROM ${this.table} WHERE deleted = 0 AND id=${id}`;
+        const rows = await BaseService.executeQuery(sql);
+        const row = rows.length === 1 ? rows.pop() : null;
+        return row;
+    }
+
+    insertOne = async (params) => {
+        return true;
+        //return false ou la ligne insérée
     }
 
 }

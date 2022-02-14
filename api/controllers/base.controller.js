@@ -1,31 +1,33 @@
-const BaseService = require('../services/base.service')
+const services = require('../services');
 
 class BaseController {
     
   constructor() {
     this.name = this.constructor.name.replace(`Controller`, ``);
     this.table = this.name.toLowerCase();
+    this.service = new services[this.table]();
   }
 
   getAll = async () => {
-    const sql = `SELECT * FROM ${this.table}`;
-    const result = await BaseService.executeQuery(sql);
+    const result = await this.service.selectAll();
     return result;
   };
 
-  getOne = (id) => {
-    return `get one ${this.table} row with id=${id}`;
+  getOne = async (id) => {
+    const result = await this.service.selectOne(id);
+    return result;
   };
 
-  createOne = () => {
-    return `create one ${this.table} row`;
+  createOne = async (params) => {
+    const result = await this.service.insertOne(params);
+    return result;
   };
 
-  updateOne = (id) => {
+  updateOne = async (id) => {
     return `update one ${this.table} row with id=${id}`;
   };
 
-  deleteOne = (id) => {
+  deleteOne = async (id) => {
     return `delete one ${this.table} row with id=${id}`;
   };
 }

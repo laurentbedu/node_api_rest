@@ -1,6 +1,6 @@
 const express = require("express");
 const Router = express.Router;
-const controllers = require('../controllers')
+const controllers = require('../controllers');
 
 class BaseRouter {
 
@@ -20,22 +20,22 @@ class BaseRouter {
     });
     //get one db contact table row
     this.router.get("/:id", async (req, res) => {
-        const response = this.controller.getOne(req.params.id);
+        const response = await this.controller.getOne(req.params.id);
       res.send(response);
     });
     //post to create one row in db table contact
     this.router.post("/", async (req, res) => {
-        const response = this.controller.createOne();
+        const response =  await this.controller.createOne(req.body);
       res.send(response);
     });
     //put to update one row in db table contact
     this.router.put("/:id", async (req, res) => {
-        const response = this.controller.updateOne(req.params.id);
+        const response = await this.controller.updateOne(req.params.id);
       res.send(response);
     });
     //delete to destroy one row in db table contact
     this.router.delete("/:id", async (req, res) => {
-        const response = this.controller.deleteOne(req.params.id);
+        const response = await this.controller.deleteOne(req.params.id);
       res.send(response);
     });
   };

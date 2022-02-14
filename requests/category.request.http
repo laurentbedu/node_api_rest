@@ -1,8 +1,15 @@
- GET http://localhost:5001/category
+#  GET http://localhost:5001/app_user
 
-# GET http://localhost:5001/category/2
+# GET http://localhost:5001/app_user/10
 
-# POST http://localhost:5001/category
+POST http://localhost:5001/category
+Content-Type: application/json
+
+{
+    "title": "titre",
+    "description": "descrition",
+    "image": "image"
+}
 
 # PUT http://localhost:5001/category/1
 

@@ -1,16 +1,56 @@
-#  GET http://localhost:5001/app_user
+# GET http://localhost:5001/category
 
-# GET http://localhost:5001/app_user/10
+# GET http://localhost:5001/category/10
 
-POST http://localhost:5001/category
-Content-Type: application/json
+# POST http://localhost:5001/category
+# Content-Type: application/json
 
-{
-    "title": "titre",
-    "description": "descrition",
-    "image": "image"
-}
+# {
+#     "where": "title = 'update titre'"
+# }
+
+# PUT http://localhost:5001/category
+# Content-Type: application/json
+
+# {
+#     "title": "titre",
+#     "description": "descrition avec ' "
+# }
+
+
+# PUT http://localhost:5001/category
+# Content-Type: application/json
+
+# [
+#     {
+#         "title": "titre",
+#         "description": "descrition avec ' "
+#     },
+#     {
+#         "title": "titre 2",
+#         "description": "descrition avec 2 "
+#     }
+# ]
 
 # PUT http://localhost:5001/category/1
+# Content-Type: application/json
+
+# {
+#     "title": "nouveau titre",
+#     "description": "nouvelle description" 
+# }
+
+# PATCH http://localhost:5001/category
+# Content-Type: application/json
+
+# {
+#     "title": "update titre",
+#     "description": "update description",
+#     "where": "id <= 5 && id >= 1"
+# }
+
+
+PATCH http://localhost:5001/category/1
+Content-Type: application/json
 
 # DELETE http://localhost:5001/category/1

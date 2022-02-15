@@ -23,14 +23,31 @@ class BaseRouter {
         const response = await this.controller.getOne(req.params.id);
       res.send(response);
     });
-    //post to create one row in db table contact
+    //
     this.router.post("/", async (req, res) => {
+      const response =  await this.controller.getAll(req.body);
+      res.send(response);
+    });
+    //post to create one row in db table contact
+    this.router.put("/", async (req, res) => {
         const response =  await this.controller.createOne(req.body);
       res.send(response);
     });
     //put to update one row in db table contact
     this.router.put("/:id", async (req, res) => {
-        const response = await this.controller.updateOne(req.params.id);
+        const params = {...req.body, where:`id=${req.params.id}`};
+        const response = await this.controller.updateWhere(params);
+        res.send(response);
+    });
+    //update with condition
+    this.router.patch("/", async (req, res) => {
+      const response = await this.controller.updateWhere(req.body);
+      res.send(response);
+    });
+    //soft delete
+    this.router.patch("/:id",async (req, res) => {
+      const params = {deleted: "1", where:`id=${req.params.id}`}
+      const response = await this.controller.updateWhere(params);
       res.send(response);
     });
     //delete to destroy one row in db table contact

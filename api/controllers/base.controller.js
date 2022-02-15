@@ -8,8 +8,8 @@ class BaseController {
     this.service = new services[this.table]();
   }
 
-  getAll = async () => {
-    const result = await this.service.selectAll();
+  getAll = async (params) => {
+    const result = await this.service.selectAll(params);
     return result;
   };
 
@@ -19,12 +19,13 @@ class BaseController {
   };
 
   createOne = async (params) => {
-    const result = await this.service.insertOne(params);
+    const result = await this.service.insertOneOrMany(params);
     return result;
   };
 
-  updateOne = async (id) => {
-    return `update one ${this.table} row with id=${id}`;
+  updateWhere = async (params) => {
+    const result = await this.service.update(params);
+    return result;
   };
 
   deleteOne = async (id) => {
